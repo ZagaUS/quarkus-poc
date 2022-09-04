@@ -1,0 +1,60 @@
+version: '3.0'
+services:
+  personality:
+    image: quarkus/pesonality
+    build:
+      context: ./personality
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "9080:8080"
+    networks:
+      - front-tier
+      - back-tier
+    environment:
+      quarkus.datasource.username: beaker
+      quarkus.datasource.password: meep
+      quarkus.datasource.jdbc.url: jdbc:postgresql://database/appdb
+  
+  locality:
+    image: quarkus/locality
+    build:
+      context: ./locality
+      dockerfile: src/main/docker/Dockerfile.jvm
+    ports:
+      - "7080:8080"
+    networks:
+      - front-tier
+      - back-tier
+    environment:
+      quarkus.datasource.username: beaker
+      quarkus.datasource.password: meep
+      quarkus.datasource.jdbc.url: jdbc:postgresql://database/appdb
+  
+  # info:
+  #   image: quarkus/info
+  #   build:
+  #     context: ./info
+  #     dockerfile: src/main/docker/Dockerfile.jvm
+  #   ports:
+  #     - "8080"
+  #   networks:
+  #     - front-tier
+  #   environment:
+  #     quarkus.datasource.username: beaker
+  #     quarkus.datasource.password: meep
+  #     quarkus.datasource.jdbc.url: jdbc:postgresql://database/appdb
+
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - back-tier
+    environment:
+      POSTGRES_USER: beaker
+      POSTGRES_PASSWORD: meep
+      POSTGRES_DB: appdb
+
+networks:
+  front-tier: {}
+  back-tier: {}

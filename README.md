@@ -33,7 +33,7 @@ This is a sample app intended to serve the purpose of demonstrating Quarkus micr
   -e POSTGRES_PASSWORD=meep \
   -e POSTGRES_DB=appdb \
   postgres
-% docker run --rm -p 9080:9080 \
+% docker run --rm -p 9080:8080 \
   -e quarkus.datasource.username=beaker \
   -e quarkus.datasource.password=meep \
   -e quarkus.datasource.jdbc.url=jdbc:postgresql://host.docker.internal/appdb \
@@ -50,3 +50,20 @@ Navigate to http://localhost:9080 to see the user interface or http://localhost:
 
 Repeat this :point_up: for the info and locality services if desired.
 
+## Docker compose
+To use docker compose do the following:
+
+### Package microservices
+```
+# do this for info and locality as well
+cd ./personality
+./mvnw clean package -Pnative
+```
+
+### Standup infrastructure
+```
+# make sure you're in the project root directory
+docker compose up
+```
+
+Be sure to review the [docker-compose.yml](./docker-compose.yml) to get a good understanding of how the infrastructure is constituted.
