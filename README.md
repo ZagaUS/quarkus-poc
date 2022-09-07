@@ -1,7 +1,12 @@
 # quarkus poc
 This is a sample app intended to serve the purpose of demonstrating Quarkus microservices.
 
+
+### architecture
 ![Overview Diagram](./docs/QuarkusMSPoCAppArch.png)
+
+### workflow
+![Overview Diagram](./docs/QuarkusMSPoCAppWorkflow.png)
 
 ## prep
 
@@ -39,6 +44,9 @@ This is a sample app intended to serve the purpose of demonstrating Quarkus micr
   -e quarkus.datasource.jdbc.url=jdbc:postgresql://host.docker.internal/appdb \
   quarkus/personality
 ```
+
+docker run --rm -p 8080 \
+  quarkus/info
 
 Navigate to http://localhost:9080 to see the user interface or http://localhost:9080/personalities to view a json payload of all personalities.
 
