@@ -19,6 +19,16 @@ This is a sample app intended to serve the purpose of demonstrating Quarkus micr
 % export PATH=/Library/Java/JavaVirtualMachines/graalvm-ce-java11-22.2.0/Contents/Home/bin:"$PATH"
 % gu install native-image
 ```
+### install prerequisites for windows
+```
+#graalvm installation for windows.
+Select the java version and download the graalvm. unzip the archive to your filesystem.
+% setx /M JAVA_HOME "C:\Progra~1\Java\<graalvm>"
+% setx /M PATH "C:\Progra~1\Java\<graalvm>\bin;%PATH%"
+% gu install native-image
+Install Visual Studio build tools(c development environment)and windows 10 sdk
+Add the compiler command "cl.exe" filepath to PATH environment variable.
+```
 
 ### learning about quarkus-maven-plugin
 ```
@@ -65,6 +75,18 @@ To use docker compose do the following:
 ```
 # do this for info and locality as well
 cd ./personality
+./mvnw clean package -Pnative
+```
+### Package microservices windows specific
+```
+On windows,  the native-image builder only works when it is executed from the x64 Native Tools Command Prompt.
+# if the visual studio build tools is installed use this command.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat
+# if the full visual studio cde is installed use this command.
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vcvars64.bat
+# x64 Native tools Command prompt from the Visual Studio interface.
+# run the same command inside the x64 Native Tools Command Prompt.
+
 ./mvnw clean package -Pnative
 ```
 
