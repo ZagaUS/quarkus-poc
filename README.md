@@ -11,6 +11,8 @@ This is a sample app intended to serve the purpose of demonstrating Quarkus micr
 ## prep
 
 ### install prerequisites
+
+#### MacOS
 ```
 % arch -arm64 brew install quarkusio/tap/quarkus
 # graalvm installation for Mac
@@ -19,7 +21,8 @@ This is a sample app intended to serve the purpose of demonstrating Quarkus micr
 % export PATH=/Library/Java/JavaVirtualMachines/graalvm-ce-java11-22.2.0/Contents/Home/bin:"$PATH"
 % gu install native-image
 ```
-### install prerequisites for windows
+
+#### Windows
 ```
 #graalvm installation for windows.
 Select the java version and download the graalvm. unzip the archive to your filesystem.
@@ -72,17 +75,25 @@ Repeat this :point_up: for the info and locality services if desired.
 To use docker compose do the following:
 
 ### Package microservices
+
+#### MacOS
 ```
 # do this for info and locality as well
 cd ./personality
 ./mvnw clean package -Pnative
 ```
-### Package microservices windows specific
+
+#### Windows
+
+> On windows, the native-image builder only works when it is executed from the x64 Native Tools Command Prompt.
+> Helpful resources:
+> - [how-to-enable-a-64-bit-visual-cpp-toolset-on-the-command-line](https://docs.microsoft.com/en-us/cpp/build/how-to-enable-a-64-bit-visual-cpp-toolset-on-the-command-line?view=msvc-170)
+> - [GraalVM getting started on windows](https://www.graalvm.org/22.2/docs/getting-started/windows/)
+
 ```
-On windows,  the native-image builder only works when it is executed from the x64 Native Tools Command Prompt.
 # if the visual studio build tools is installed use this command.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvars64.bat
-# if the full visual studio cde is installed use this command.
+# if the full visual studio code is installed use this command.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\vcvars64.bat
 # x64 Native tools Command prompt from the Visual Studio interface.
 # run the same command inside the x64 Native Tools Command Prompt.
